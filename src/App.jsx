@@ -1,27 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Navbar = (props) => {
+const Children = (props) => {
 	return (
 		<div>
-			{props.children}
-			{props.title}
+			<button onClick={() => props.setTitle('titulo actualizado')}>click update title</button>
 		</div>
 	)
 }
 
 
 const App = () => {
+	const [title, setTitle] = useState('titulo')
+
 	return (
 		<div>
-			<Navbar title={'titulo'}>
-				<h1>Hola mundo</h1>
-				<p> soy un hijo</p>
-			</Navbar>
+			<h1>{title}</h1>
+
+			<Children setTitle={setTitle}/>
 		</div>
 	)
 }
 
 export { 
-	App,
-	Navbar
+	App
 }
