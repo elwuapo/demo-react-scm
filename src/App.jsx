@@ -1,14 +1,27 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
-const App = () => {
-	const { t }  = useTranslation('global')
-
+const Navbar = (props) => {
 	return (
 		<div>
-			{t('hello')}
+			{props.children}
+			{props.title}
 		</div>
 	)
 }
 
-export { App }
+
+const App = () => {
+	return (
+		<div>
+			<Navbar title={'titulo'}>
+				<h1>Hola mundo</h1>
+				<p> soy un hijo</p>
+			</Navbar>
+		</div>
+	)
+}
+
+export { 
+	App,
+	Navbar
+}
