@@ -1,9 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { Context } from './context/Context'
 
-const Children = (props) => {
+
+const GrandChildren = () => {
+	const { color } = useContext(Context)
+
+	return (
+		<div style={{color: color}}>hola</div>
+	)
+}
+
+const Children = () => {
+	const { setTitle } = useContext(Context)
+
 	return (
 		<div>
-			<button onClick={() => props.setTitle('titulo actualizado')}>click update title</button>
+			<button onClick={() => setTitle('titulo actualizado')}>click update title</button>
+
+			<GrandChildren />
 		</div>
 	)
 }
@@ -14,9 +28,11 @@ const App = () => {
 
 	return (
 		<div>
-			<h1>{title}</h1>
+			<Context.Provider value={{color: 'green', setTitle}}>
+				<h1>{title}</h1>
 
-			<Children setTitle={setTitle}/>
+				<Children setTitle={setTitle}/>
+			</Context.Provider>
 		</div>
 	)
 }
